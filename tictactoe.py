@@ -1,13 +1,21 @@
 import os
 
 def clear():
-    os.system( 'cls' )
+    os.system( 'clear' )
 
 def display_board(board):
     clear()
-    print(board[7]+'|'+board[8]+'|'+board[9])
-    print(board[4]+'|'+board[5]+'|'+board[6])
-    print(board[1]+'|'+board[2]+'|'+board[3])
+    print('   |   |')
+    print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
+    print('   |   |')
+    print('-----------')
+    print('   |   |')
+    print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
+    print('   |   |')
+    print('-----------')
+    print('   |   |')
+    print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+    print('   |   |')
 
 def player_input():
     marker = ''
@@ -40,10 +48,10 @@ def choose_first():
     if flip == 0:
         return 'Player 1'
     else:
-        return 'Player2'
+        return 'Player 2'
 
 def space_check(board, position):
-    return board[position] == ' '
+    return (board[position] != 'X' and board[position] != 'O')
 
 def full_board_check(board):
     for i in range (1,10):
@@ -54,25 +62,26 @@ def full_board_check(board):
 def player_choice(board):
     position = 0
     while position not in [1,2,3,4,5,6,7,8,9] or not space_check(board,position):
-        position = int(input('Please enter the position (1-9): '))
+        position = int(input('\nPlease enter the position (1-9): '))
     return position
 
 def replay():
     choice = input('Do you want to play again? Enter Y or N ')
     return choice.upper() == 'Y'
-
+print('\n\n***********************')
 print('Welcome to Tic Tac Toe!')
+print('***********************\n\n')
 
 while True:
-    
-    game_board = [' '] * 10
+
+    game_board = [' ', '1','2','3','4','5','6','7','8','9']
     
     player1_marker, player2_marker = player_input()
     
     turn = choose_first()
-    print(turn +' will go first!')
+    print('\n' + turn +' will go first!')
     
-    ready = input('Ready to play? Y or N: ')
+    ready = input('\nReady to play? Y or N: ')
     
     if ready.upper() == 'Y':
         game_on = True
